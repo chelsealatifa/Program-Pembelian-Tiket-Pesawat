@@ -13,33 +13,33 @@ def hitung():
     def nota():
         print("==========JAKARTA PYTHON AIRLINES==========")
         print("Nama pembeli\t\t: ", nama)
-        print("No HP\t\t: ", no)
+        print("No HP\t\t\t: ", no)
         print("Asal kota\t\t: ", asal)
-        print("Total pembayaran\t: ", bayar)
+        print("Total pembayaran\t: Rp", int(bayar))
     beli = len(pilihan)
     if beli % 5 == 0:
         diskon = beli / 5
         potongan = harga * 5 * diskon * 5/100
         total = (harga * beli) - potongan
-        print('Total pembelian:', total)
+        print('Total pembelian: Rp', int(total))
         print("Pajak 10%")
         pajak = total * 10/100
         bayar = total + pajak
-        print("Jumlah pembayaran Anda: Rp", bayar)
+        print("Jumlah pembayaran Anda: Rp", int(bayar))
         uang = int(input("Jumlah uang: Rp "))
         kembalian = uang - bayar
-        print("Uang kembalian sebesar: Rp ", kembalian)
+        print("Uang kembalian sebesar: Rp", int(kembalian))
         nota()
     elif beli % 5 != 0:
         total = harga * beli
-        print('Total pembelian:', total)
+        print('Total pembelian: Rp', int(total))
         print("Pajak 10%")
         pajak = total * 10/100
         bayar = total + pajak
-        print("Jumlah pembayaran Anda: Rp", bayar)
+        print("Jumlah pembayaran Anda: Rp", int(bayar))
         uang = int(input("Jumlah uang: Rp "))
         kembalian = uang - bayar
-        print("Uang kembalian sebesar: Rp ", kembalian)
+        print("Uang kembalian sebesar: Rp", int(kembalian))
         nota()
 
 def P():
