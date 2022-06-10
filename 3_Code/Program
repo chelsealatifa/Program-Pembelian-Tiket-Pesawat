@@ -1,21 +1,60 @@
-print("=================JAKARTA PYTHON AIRLINES=================")
+judul = "JAKARTA PYTHON AIRLINES"
+judul = judul.center(96)
 harga = 15000000
 seat = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '4A', '4B', '4C', '5A', '5B', '5C']
 pilihan = []
-
-nama = str(input("Nama Pembeli\t: "))
-no = str(input("Nomor HP\t: "))
-asal = str(input("Asal Kota\t: "))
-
-print('Seat:', seat)
-
+data_pembeli = []
+def data_nama():
+    nama = str(input("Nama Pembeli\t\t\t\t: "))
+    if nama != "":
+        data_pembeli.append(nama)
+    else:
+        print("Belum ada data yang diinputkan")
+        data_nama()
+'''
+def data_no():
+    no = str(input("Nomor HP\t\t\t\t: +62 "))
+    if no != "":
+        data_pembeli.append(no) 
+    elif:
+        print("Nomor HP tidak valid, ulangi sekali lagi")
+        data_no()
+    else:
+        print("Belum ada data yang diinputkan")
+        data_no()
+'''
+def data_no():
+    try:
+        no = int(input("Nomor HP\t\t\t\t: +62 "))
+        if no != "":
+            data_pembeli.append(no)
+        else:
+            print("Belum ada data yang diinputkan")
+            data_no()
+    except ValueError:
+        print("Nomor HP tidak valid, ulangi sekali lagi")
+        data_no()
+def data_asal():
+    asal = str(input("Asal Kota\t\t\t\t: "))
+    if asal != "":
+        data_pembeli.append(asal)
+    else:
+        print("Belum ada data yang diinputkan")
+        data_asal()
+    
 def hitung():
-    def nota():
-        print("==========JAKARTA PYTHON AIRLINES==========")
-        print("Nama pembeli\t\t: ", nama)
-        print("No HP\t\t\t: ", no)
-        print("Asal kota\t\t: ", asal)
-        print("Total pembayaran\t: Rp", int(bayar))
+    def nota(): 
+        print(judul, "\n ")
+        print("Nama pembeli\t\t\t\t:", data_pembeli[0])
+        print("No HP\t\t\t\t\t: +62", data_pembeli[1])
+        print("Asal kota\t\t\t\t:", data_pembeli[2])
+        print("Seat\t\t\t\t\t:", end=" ")
+        for i in range(len(pilihan)):
+            if i == len(pilihan)-1:
+                print(pilihan[i])
+            else:
+                print(pilihan[i], end=", ")
+        print("Total pembayaran\t\t\t: Rp", int(bayar))
     beli = len(pilihan)
     if beli % 5 == 0:
         diskon = beli / 5
@@ -32,18 +71,37 @@ def hitung():
         nota()
     elif beli % 5 != 0:
         total = harga * beli
-        print('Total pembelian: Rp', int(total))
-        print("Pajak 10%")
+        print()
+        print('Total pembelian\t\t\t\t: Rp', int(total))
+        print("\t\t\t\t\t\t\t\t\t\t+Pajak 10%")
         pajak = total * 10/100
         bayar = total + pajak
-        print("Jumlah pembayaran Anda: Rp", int(bayar))
-        uang = int(input("Jumlah uang: Rp "))
+        print("Jumlah pembayaran Anda\t\t\t: Rp", int(bayar))
+        uang = int(input("Jumlah uang\t\t\t\t: Rp "))
         kembalian = uang - bayar
-        print("Uang kembalian sebesar: Rp", int(kembalian))
+        print("Uang kembalian sebesar\t\t\t: Rp", int(kembalian))
+        print()
         nota()
 
 def P():
-    x = str(input("Pilih seat\t: "))
+    def Q():
+        print()
+        print('Seat:', seat)
+        print()
+        print("Seat terpilih\t\t\t\t: ", pilihan)
+        print()
+        y = str(input("Apakah ada pilihan seat lagi? (Y/N)\t: "))
+        if y == "Y":
+            P()
+        elif y == "N":
+            hitung()
+        else:
+            print("Terjadi kesalahan input, coba periksa kembali")
+            Q()
+    print()
+    print('Seat:', seat)
+    print()
+    x = str(input("Pilih seat\t\t\t\t: "))
     if x == '':
         print("Terjadi kesalahan input, coba periksa kembali")
         P()
@@ -51,16 +109,28 @@ def P():
         if seat.count(x) != 0:
             seat.remove(x)
             pilihan.append(x)
-            print("Seat terpilih\t: ", pilihan)
-            y = str(input("Apakah ada pilihan seat lagi? (Y/N): "))
-            if y == "Y":
-                P()
-            elif y == "N":
-                hitung()
-            else:
-                print("Terjadi kesalahan input, coba periksa kembali")
+            Q()    
         elif seat.count(x) == 0:
             print("Seat tidak tersedia, coba seat lain")
             P()
+def main():
+    def runapp():
+        run = str(input("Mengulang aplikasi? (Y/N)\t\t: "))
+        if run == "Y":
+            print()
+            main()
+        elif run == "N":
+            pass
+        else:
+            print("Terjadi kesalahan input, coba periksa kembali")
+            runapp()
+    print(judul, "\n ")
+    data_nama()
+    data_no()
+    data_asal()
+    P()
+    print()
+    runapp()
 
-P()
+if __name__ == "__main__":
+    main()
