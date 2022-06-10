@@ -11,7 +11,6 @@ def data_nama():
     else:
         print("Belum ada data yang diinputkan")
         data_nama()
-
 def data_no():
     try:
         no = int(input("Nomor HP\t\t\t\t: +62 "))
