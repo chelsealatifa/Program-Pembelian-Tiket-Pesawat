@@ -101,6 +101,7 @@ def P():
         elif seat.count(x) == 0:
             print("Seat tidak tersedia, coba seat lain")
             P()
+            
 def main():
     def runapp():
         run = str(input("Mengulang aplikasi? (Y/N)\t\t: "))
