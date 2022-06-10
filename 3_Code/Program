@@ -11,18 +11,7 @@ def data_nama():
     else:
         print("Belum ada data yang diinputkan")
         data_nama()
-'''
-def data_no():
-    no = str(input("Nomor HP\t\t\t\t: +62 "))
-    if no != "":
-        data_pembeli.append(no) 
-    elif:
-        print("Nomor HP tidak valid, ulangi sekali lagi")
-        data_no()
-    else:
-        print("Belum ada data yang diinputkan")
-        data_no()
-'''
+
 def data_no():
     try:
         no = int(input("Nomor HP\t\t\t\t: +62 "))
