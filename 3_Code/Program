@@ -36,12 +36,15 @@ def hitung():
         print("Nama pembeli\t\t\t\t:", data_pembeli[0])
         print("No HP\t\t\t\t\t: +62", data_pembeli[1])
         print("Asal kota\t\t\t\t:", data_pembeli[2])
+        print("Tujuan\t\t\t\t\t: SYDNEY")
+        print("Waktu\t\t\t\t\t: 08.00 WIB")
         print("Seat\t\t\t\t\t:", end=" ")
         for i in range(len(pilihan)):
             if i == len(pilihan)-1:
                 print(pilihan[i])
             else:
                 print(pilihan[i], end=", ")
+        print("Pesawat\t\t\t\t\t: PY 2021 INF")
         print("Total pembayaran\t\t\t: Rp", int(bayar))
     beli = len(pilihan)
     if beli % 5 == 0:
