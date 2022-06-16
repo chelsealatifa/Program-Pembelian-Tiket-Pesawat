@@ -1,19 +1,26 @@
+import csv
+
 judul = "JAKARTA PYTHON AIRLINES"
 judul = judul.center(96)
 harga = 15000000
+global tujuan
 tujuan = "SYDNEY"
+global waktu
 waktu = "08.00 WIB"
+global pesawat
 pesawat = "PY 2021 INF"
 seat = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '4A', '4B', '4C', '5A', '5B', '5C']
 pilihan = []
 
 def data_nama():
+    global nama
     nama = str(input("Nama Pembeli\t\t\t\t: "))
     if nama == "":
         print("Belum ada data yang diinputkan")
         data_nama()
     return nama
 def data_no():
+    global no
     try:
         no = int(input("Nomor HP\t\t\t\t: +62 "))
         if no == "":
@@ -24,6 +31,7 @@ def data_no():
         data_no()
     return no
 def data_asal():
+    global asal
     asal = str(input("Asal Kota\t\t\t\t: "))
     if asal == "":
         print("Belum ada data yang diinputkan")
@@ -31,6 +39,7 @@ def data_asal():
     return asal
     
 def hitung():
+    global bayar
     def nota(): 
         print(judul, "\n ")
         print("Nama pembeli\t\t\t\t:", nama)
@@ -104,6 +113,18 @@ def P():
         elif seat.count(x) == 0:
             print("Seat tidak tersedia, coba seat lain")
             P()
+
+def logbill():
+    kursi = ''
+    for i in range(len(pilihan)):
+        if i == len(pilihan) - 1:
+            kursi = kursi + pilihan[i] 
+        else:    
+            kursi = kursi + pilihan[i] + ', '
+    bill = nama, no, asal, tujuan, waktu, kursi, pesawat, bayar
+    with open('datalogbill.csv', 'a', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=";")
+        csv_writer.writerow(bill)
             
 def main():
     def runapp():
@@ -122,6 +143,7 @@ def main():
     data_no()
     data_asal()
     P()
+    logbill()
     print()
     runapp()
 
