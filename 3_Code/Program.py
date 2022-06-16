@@ -122,8 +122,8 @@ def logbill():
         csv_writer = csv.writer(csv_file, delimiter=";")
         csv_writer.writerow(bill)
 
-from fpdf import FPDF
 def PDF():
+    from fpdf import FPDF
     pdf=FPDF()
     pdf.add_page()
     pdf.set_font("Arial","B", size=14)
@@ -144,7 +144,6 @@ def PDF():
     pdf.cell(100,10, txt="Pesawat\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(pesawat), ln=8, align="L")
     pdf.cell(100,10, txt="Total Pembayaran\t\t\t\t\t\t\t\t\t\t\t\t: Rp{}".format(int(bayar)), ln=9, align="L")
     pdf.output("TIKET.pdf")
-
             
 def main():
     def runapp():
