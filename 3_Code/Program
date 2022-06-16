@@ -148,8 +148,7 @@ def PDF():
     pdf.cell(100,10, txt="Pesawat\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(pesawat), ln=8, align="L")
     pdf.cell(100,10, txt="Total Pembayaran\t\t\t\t\t\t\t\t\t\t\t\t: Rp{}".format(int(bayar)), ln=9, align="L")
     pdf.output("TIKET.pdf")
-
-            
+     
 def main():
     def runapp():
         run = str(input("Mengulang aplikasi? (Y/N)\t\t: "))
