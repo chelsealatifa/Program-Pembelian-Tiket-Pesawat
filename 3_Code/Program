@@ -1,47 +1,59 @@
+import csv
+
 judul = "JAKARTA PYTHON AIRLINES"
 judul = judul.center(96)
 harga = 15000000
+global tujuan
+tujuan = "SYDNEY"
+global waktu
+waktu = "08.00 WIB"
+global pesawat
+pesawat = "PY 2021 INF"
 seat = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '4A', '4B', '4C', '5A', '5B', '5C']
 pilihan = []
-data_pembeli = []
+
 def data_nama():
+    global nama
     nama = str(input("Nama Pembeli\t\t\t\t: "))
-    if nama != "":
-        data_pembeli.append(nama)
-    else:
+    if nama == "":
         print("Belum ada data yang diinputkan")
         data_nama()
+    return nama
 def data_no():
+    global no
     try:
         no = int(input("Nomor HP\t\t\t\t: +62 "))
-        if no != "":
-            data_pembeli.append(no)
-        else:
+        if no == "":
             print("Belum ada data yang diinputkan")
             data_no()
     except ValueError:
         print("Nomor HP tidak valid, ulangi sekali lagi")
         data_no()
+    return no
 def data_asal():
+    global asal
     asal = str(input("Asal Kota\t\t\t\t: "))
-    if asal != "":
-        data_pembeli.append(asal)
-    else:
+    if asal == "":
         print("Belum ada data yang diinputkan")
         data_asal()
+    return asal
     
 def hitung():
+    global bayar
     def nota(): 
         print(judul, "\n ")
-        print("Nama pembeli\t\t\t\t:", data_pembeli[0])
-        print("No HP\t\t\t\t\t: +62", data_pembeli[1])
-        print("Asal kota\t\t\t\t:", data_pembeli[2])
+        print("Nama pembeli\t\t\t\t:", nama)
+        print("No HP\t\t\t\t\t: +62", no)
+        print("Asal kota\t\t\t\t:", asal)
+        print("Tujuan\t\t\t\t\t:", tujuan)
+        print("Waktu\t\t\t\t\t:", waktu)
         print("Seat\t\t\t\t\t:", end=" ")
         for i in range(len(pilihan)):
             if i == len(pilihan)-1:
                 print(pilihan[i])
             else:
                 print(pilihan[i], end=", ")
+        print("Pesawat\t\t\t\t\t:", pesawat)
         print("Total pembayaran\t\t\t: Rp", int(bayar))
     beli = len(pilihan)
     if beli % 5 == 0:
@@ -101,11 +113,48 @@ def P():
         elif seat.count(x) == 0:
             print("Seat tidak tersedia, coba seat lain")
             P()
+
+def logbill():
+    kursi = ''
+    for i in range(len(pilihan)):
+        if i == len(pilihan) - 1:
+            kursi = kursi + pilihan[i] 
+        else:    
+            kursi = kursi + pilihan[i] + ', '
+    bill = nama, no, asal, tujuan, waktu, kursi, pesawat, bayar
+    with open('LOGTIKET.csv', 'a', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=";")
+        csv_writer.writerow(bill)
+
+from fpdf import FPDF
+def PDF():
+    pdf=FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial","B", size=14)
+    pdf.cell(200,10, txt='JAKARTA PYTHON AIRLINES', ln=1, align="C")
+    pdf.set_font("Arial", size=12)
+    pdf.cell(100,10, txt="Nama Pembeli\t\t\t\t: {}".format(nama),ln=2, align="L")
+    pdf.cell(100,10, txt="No Hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t: +62 {} ".format(no), ln=3, align="L")
+    pdf.cell(100,10, txt="Asal Kota\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(asal), ln=4, align="L")
+    pdf.cell(100,10, txt="Tujuan\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(tujuan), ln=5, align="L")
+    pdf.cell(100,10, txt="Waktu\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(waktu), ln=6, align="L")
+    kursi = ''
+    for i in range(len(pilihan)):
+        if i == len(pilihan) - 1:
+            kursi = kursi + pilihan[i] 
+        else:    
+            kursi = kursi + pilihan[i] + ', '
+    pdf.cell(100,10, txt="Seat\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(kursi), ln=7, align="L")
+    pdf.cell(100,10, txt="Pesawat\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(pesawat), ln=8, align="L")
+    pdf.cell(100,10, txt="Total Pembayaran\t\t\t\t\t\t\t\t\t\t\t\t: Rp{}".format(int(bayar)), ln=9, align="L")
+    pdf.output("TIKET.pdf")
+
             
 def main():
     def runapp():
         run = str(input("Mengulang aplikasi? (Y/N)\t\t: "))
         if run == "Y":
+            pilihan.clear()
             print()
             main()
         elif run == "N":
@@ -118,6 +167,8 @@ def main():
     data_no()
     data_asal()
     P()
+    logbill()
+    PDF()
     print()
     runapp()
 
