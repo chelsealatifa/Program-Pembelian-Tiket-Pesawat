@@ -130,19 +130,19 @@ def PDF():
     pdf.cell(200,10, txt='JAKARTA PYTHON AIRLINES', ln=1, align="C")
     pdf.set_font("Arial", size=12)
     pdf.cell(100,10, txt="Nama Pembeli\t\t\t\t: {}".format(nama),ln=2, align="L")
-    pdf.cell(100,10, txt="No Hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t: +62 {} ".format(no), ln=3, align="L")
-    pdf.cell(100,10, txt="Asal Kota\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(asal), ln=4, align="L")
-    pdf.cell(100,10, txt="Tujuan\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(tujuan), ln=5, align="L")
-    pdf.cell(100,10, txt="Waktu\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(waktu), ln=6, align="L")
+    pdf.cell(100,10, txt="No Hp\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t: +62 {} ".format(no), ln=2, align="L")
+    pdf.cell(100,10, txt="Asal Kota\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(asal), ln=2, align="L")
+    pdf.cell(100,10, txt="Tujuan\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(tujuan), ln=2, align="L")
+    pdf.cell(100,10, txt="Waktu\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(waktu), ln=2, align="L")
     kursi = ''
     for i in range(len(pilihan)):
         if i == len(pilihan) - 1:
             kursi = kursi + pilihan[i] 
         else:    
             kursi = kursi + pilihan[i] + ', '
-    pdf.cell(100,10, txt="Seat\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(kursi), ln=7, align="L")
-    pdf.cell(100,10, txt="Pesawat\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(pesawat), ln=8, align="L")
-    pdf.cell(100,10, txt="Total Pembayaran\t\t\t\t\t\t\t\t\t\t\t\t: Rp{}".format(int(bayar)), ln=9, align="L")
+    pdf.cell(100,10, txt="Seat\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(kursi), ln=2, align="L")
+    pdf.cell(100,10, txt="Pesawat\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(pesawat), ln=2, align="L")
+    pdf.cell(100,10, txt="Total Pembayaran\t\t\t\t\t\t\t\t\t\t\t\t: Rp{}".format(int(bayar)), ln=2, align="L")
     pdf.output("TIKET.pdf")
             
 def main():
