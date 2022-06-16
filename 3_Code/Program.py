@@ -1,13 +1,8 @@
-import csv
-
 judul = "JAKARTA PYTHON AIRLINES"
 judul = judul.center(96)
 harga = 15000000
-global tujuan
 tujuan = "SYDNEY"
-global waktu
 waktu = "08.00 WIB"
-global pesawat
 pesawat = "PY 2021 INF"
 seat = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '4A', '4B', '4C', '5A', '5B', '5C']
 pilihan = []
@@ -115,6 +110,7 @@ def P():
             P()
 
 def logbill():
+    import csv
     kursi = ''
     for i in range(len(pilihan)):
         if i == len(pilihan) - 1:
@@ -148,7 +144,8 @@ def PDF():
     pdf.cell(100,10, txt="Pesawat\t\t\t\t\t\t\t\t\t\t\t\t: {}".format(pesawat), ln=8, align="L")
     pdf.cell(100,10, txt="Total Pembayaran\t\t\t\t\t\t\t\t\t\t\t\t: Rp{}".format(int(bayar)), ln=9, align="L")
     pdf.output("TIKET.pdf")
-     
+
+            
 def main():
     def runapp():
         run = str(input("Mengulang aplikasi? (Y/N)\t\t: "))
